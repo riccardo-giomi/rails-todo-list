@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :todo do
-    title { 'MyString' }
-    description { 'MyString' }
+    title { 'I have something To Do' }
+    description { 'This would be a description of what I have To Do.' }
   end
 end
