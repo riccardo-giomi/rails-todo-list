@@ -1,0 +1,16 @@
+div id="#{dom_id todo}"
+  p.my-5
+    strong.block.font-medium.mb-1
+      | Title:
+
+    =< todo.title
+  p.my-5
+    strong.block.font-medium.mb-1
+      | Description:
+
+    =< todo.description
+
+  - if action_name != 'show'
+    = link_to 'Show this todo', todo, class: 'rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium'
+    = link_to 'Edit this todo', edit_todo_path(todo), class: 'rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium'
+    hr.mt-6
