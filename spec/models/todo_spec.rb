@@ -3,5 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Todo do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'requires a title' do
+    todo = described_class.new
+    todo.valid?
+    expect(todo.errors[:title]).to match(a_collection_including(/blank/))
+  end
 end
