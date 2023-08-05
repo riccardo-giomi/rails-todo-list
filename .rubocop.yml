@@ -1,0 +1,41 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+Layout/HashAlignment:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+
+Style/Documentation:
+  Exclude:
+    - app/controllers/**/*
+    - config/**/*
+    - spec/**/*
+    - db/**/*
+Style/RedundantFetchBlock:
+  Exclude:
+    - config/**/*
+Style/RedundantConstantBase:
+  Exclude:
+    - config/**/*
+Style/GlobalStdStream:
+  Exclude:
+    - config/**/*
+RSpec/ExampleLength:
+  Exclude:
+    - spec/requests/**/*
+RSpec/MultipleMemoizedHelpers:
+  Exclude:
+    - spec/requests/**/*
+RSpec/MultipleExpectations:
+  Exclude:
+    - spec/requests/**/*
+    - spec/views/**/*
+Metrics/BlockLength:
+  Exclude:
+    - config/environments/*
