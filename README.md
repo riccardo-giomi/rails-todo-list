@@ -2,27 +2,54 @@
 
 A Ruby on Rails 7.0.6 application to manage, surprise surprise, a list of todos.
 
-# README
+## Versions and requirements
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The current Ruby on Rails version is 7.0.6
 
-Things you may want to cover:
+|       | Required | Recommended |
+| ----- | -------- | ----------- |
+| Ruby  | ~> 3.0   | ~> 3.2      |
+| Rails | ~> 7.0   | 7.0.6       |
 
-- Ruby version
+The application is configured to use PostgreSQL, but it is just one edit of
+`config/database.yml` away from using whichever DB manager you prefer.
+See the
+[Rails guide](https://guides.rubyonrails.org/configuring.html#configuring-a-database)
+for instructions on how to configure a specific DBMS.
 
-- System dependencies
+|               | Required | Recommended |
+| ------------- | -------- | ----------- |
+| PostgreSQL \* | ~> 9.3   | ~> 15       |
 
-- Configuration
+- \* **with headers, -dev packages, etc.**
 
-- Database creation
+## Local installation
 
-- Database initialization
+Create the database with:
 
-- How to run the test suite
+```bash
+bin/rails db:prepare
+```
 
-- Services (job queues, cache servers, search engines, etc.)
+## Running tests and local server
 
-- Deployment instructions
+Tests can be run with:
 
-- ...
+```bash
+bundle exec rspec
+```
+
+The local server can be started with:
+
+```bash
+bin/dev
+```
+
+By default the application will be available at `http://localhost:3000`.
+
+The port can be changed by editing `Procfile.dev` and changing the `3000` value
+to the desired port number in the following line:
+
+```
+web: bin/rails server -p 3000
+```
