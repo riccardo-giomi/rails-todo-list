@@ -15,6 +15,11 @@ Rails.application.configure do
     system("bundle exec rubocop -A --fail-level=E #{parsable_files.shelljoin} > /dev/null || true", exception: true)
   end
 
+  # This should solve the problem of TailwindCSS `@apply` directives not being
+  # (re)built in development. See also:
+  # https://github.com/rails/tailwindcss-rails/issues/160
+  config.assets.debug = true
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
