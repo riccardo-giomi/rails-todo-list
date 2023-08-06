@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 class TodosController < ApplicationController
-  before_action :set_todo, only: %i[show edit update destroy]
+  before_action :set_todo, only: %i[show edit update destroy cancel_edit]
 
   def index
-    @todos = Todo.all
+    # Until we implement positions, ordering by id keeps edited elements where
+    # they should be if we reload the page.
+    @todos = Todo.all.order(:id)
   end
 
-  # Serves only JSON from a route constraint
   def show; end
 
   def new
@@ -16,7 +17,7 @@ class TodosController < ApplicationController
 
   def edit; end
 
-  def create
+  def create # rubocop:disable Metrics/MethodLength
     @todo = Todo.new(todo_params)
 
     respond_to do |format|
@@ -34,6 +35,7 @@ class TodosController < ApplicationController
   def update
     respond_to do |format|
       if @todo.update(todo_params)
+        format.turbo_stream
         format.html { redirect_to todos_path, notice: 'Todo was successfully updated.' }
         format.json { render :show, status: :ok, location: @todo }
       else
@@ -54,6 +56,13 @@ class TodosController < ApplicationController
   end
 
   def cancel_create
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to todos_path }
+    end
+  end
+
+  def cancel_edit
     respond_to do |format|
       format.turbo_stream
       format.html { redirect_to todos_path }

@@ -2,6 +2,7 @@ mx-auto.md:w-2/3.w-full
   h1.font-bold.text-4xl
     | Editing todo
 
-  == render 'form'
+  = turbo_frame_tag @todo do
+    == render 'form'
 
-  = link_to 'Back to todos', todos_path, class: 'ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium'
+    = link_to 'Back', todos_cancel_edit_path(@todo), data: { turbo_stream: true }, class: 'ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium'

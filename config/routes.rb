@@ -5,10 +5,11 @@ Rails.application.routes.draw do
 
   resources :todos, except: [:show]
   namespace :todos do
-    get '/cancel_create', to: '/todos#cancel_create'
+    get '/cancel_create',   to: '/todos#cancel_create'
+    get '/cancel_edit/:id', to: '/todos#cancel_edit', as: 'cancel_edit'
   end
 
-  constraints ->(req) { req.format == :json } do
+  constraints ->(req) { %i[json turbo_stream].include? req.format.to_sym } do
     resources :todos, only: [:show]
   end
 end

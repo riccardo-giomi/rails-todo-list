@@ -55,6 +55,14 @@ RSpec.describe '/todos' do
       end
     end
 
+    describe 'GET /cancel_edit' do
+      it 'redirects to the index page' do
+        todo = Todo.create! valid_attributes
+        get todos_cancel_edit_path(todo)
+        expect(response).to redirect_to(todos_path)
+      end
+    end
+
     describe 'GET /edit' do
       it 'renders a successful response' do
         todo = Todo.create! valid_attributes
@@ -147,6 +155,17 @@ RSpec.describe '/todos' do
         expect(response).to be_successful
         expect(response.content_type).to match(/turbo-stream/)
         expect(response.body).to include('<turbo-stream action="replace" target="new-todo">')
+      end
+    end
+
+    describe 'GET /cancel_edit' do
+      it 'replaces the edit form' do
+        todo = Todo.create! valid_attributes
+        get(todos_cancel_edit_path(todo), headers:)
+
+        expect(response).to be_successful
+        expect(response.content_type).to match(/turbo-stream/)
+        expect(response.body).to include(%(<turbo-stream action="replace" target="todo_#{todo.id}">))
       end
     end
   end

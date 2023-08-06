@@ -1,17 +1,16 @@
-div id="#{dom_id todo}"
-  p.my-5
-    strong.block.font-medium.mb-1
-      | Title:
+div
+  = turbo_frame_tag todo do
+    p.my-5
+      strong.block.font-medium.mb-1
+        | Title:
 
-    =< todo.title
-  p.my-5
-    strong.block.font-medium.mb-1
-      | Description:
+      =< todo.title
+    p.my-5
+      strong.block.font-medium.mb-1
+        | Description:
 
-    =< todo.description
+      =< todo.description
 
-
-  = link_to 'Edit', edit_todo_path(todo), class: 'rounded-lg py-3 ml-2 px-5 text-white bg-blue-600 inline-block font-medium'
-  .inline-block.ml-2
-    = button_to 'Delete', todo, method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'mt-2 rounded-lg py-3 px-5 text-white bg-rose-600 font-medium'
-  hr.mt-6
+    = link_to 'Edit', edit_todo_path(todo), class: 'rounded-lg py-3 ml-2 px-5 text-white bg-blue-600 inline-block font-medium'
+    .inline-block.ml-2
+      = button_to 'Delete', todo, method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'mt-2 rounded-lg py-3 px-5 text-white bg-rose-600 font-medium'
