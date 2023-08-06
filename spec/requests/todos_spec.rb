@@ -105,7 +105,6 @@ RSpec.describe '/todos' do
     end
   end
 
-
   context 'when serving Turbo Stream Requests' do
     let(:headers) do
       { accept: 'text/vnd.turbo-stream.html' }
@@ -116,6 +115,18 @@ RSpec.describe '/todos' do
         expect do
           post(todos_path, params: { todo: valid_attributes }, headers:)
         end.to change(Todo, :count).by(1)
+
+        expect(response).to be_successful
+        expect(response.content_type).to match(/turbo-stream/)
+      end
+    end
+
+    describe 'DELETE /destroy' do
+      it 'destroys the requested todo' do
+        todo = Todo.create! valid_attributes
+        expect do
+          delete(todo_path(todo), headers:)
+        end.to change(Todo, :count).by(-1)
 
         expect(response).to be_successful
         expect(response.content_type).to match(/turbo-stream/)
