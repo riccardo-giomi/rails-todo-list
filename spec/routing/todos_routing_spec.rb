@@ -35,5 +35,9 @@ RSpec.describe TodosController do
     it 'routes to #destroy' do
       expect(delete: '/todos/1').to route_to('todos#destroy', id: '1')
     end
+
+    it 'routes to #cancel_create' do
+      expect(get: '/todos/cancel_create').to route_to('todos#cancel_create')
+    end
   end
 end

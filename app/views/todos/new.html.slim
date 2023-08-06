@@ -1,2 +1,4 @@
 = turbo_frame_tag 'new-todo' do
   == render 'form'
+
+  = link_to 'Back', todos_cancel_create_path, data: { turbo_stream: true }, class: 'ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium'

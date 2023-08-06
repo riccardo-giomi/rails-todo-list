@@ -48,8 +48,15 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to todos_url, notice: 'Todo was successfully destroyed.' }
+      format.html { redirect_to todos_path, notice: 'Todo was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def cancel_create
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to todos_path }
     end
   end
 
