@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe 'todos/new' do
   before do
     assign(:todo, Todo.new(

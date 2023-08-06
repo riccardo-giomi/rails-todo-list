@@ -7,7 +7,7 @@ class TodosController < ApplicationController
     @todos = Todo.all
   end
 
-  # Note that this action only responds with json due to routing constraints.
+  # Serves only JSON from a route constraint
   def show; end
 
   def new
@@ -21,6 +21,7 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.save
+        format.turbo_stream
         format.html { redirect_to todos_path, notice: 'Todo was successfully created.' }
         format.json { render :show, status: :created, location: @todo }
       else

@@ -11,3 +11,7 @@
 }
 
 */
+
+turbo-frame {
+  @apply border-2 border-dashed border-rose-500 block;
+}

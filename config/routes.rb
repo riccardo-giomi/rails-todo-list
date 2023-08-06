@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :todos, except: [:show]
 
-  # We have no "show" page, so we only respond to these requests in JSON:
-  get 'todos/:id', to: 'todos#show', constraints: ->(req) { req.format = :json }
+  constraints ->(req) { req.format == :json } do
+    resources :todos, only: [:show]
+  end
 end
