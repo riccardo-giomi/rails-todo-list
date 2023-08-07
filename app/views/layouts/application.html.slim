@@ -12,5 +12,8 @@ html
     = javascript_importmap_tags
 
   body
-    main.container.mx-auto.mt-28.px-5.flex
-      = yield
+    .container.mx-auto.bg-gray-300
+      = render 'components/header'
+      main.w-full
+        = yield
+      = render 'components/footer'

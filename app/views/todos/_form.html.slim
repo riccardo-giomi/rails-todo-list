@@ -1,20 +1,25 @@
-= form_with(model: @todo, class: 'contents') do |form|
-  - if @todo.errors.any?
-    #error_explanation.bg-red-50.text-red-500.px-3.py-2.font-medium.rounded-lg.mt-3
-      h2
-        = "#{pluralize(@todo.errors.count, 'error')} prohibited this todo from being saved:"
+.bg-amber-300.text-gray-800.rounded-xl.p-1.border.border-gray-500
+  = form_with(model: @todo, class: 'contents') do |form|
+    - if @todo.errors.any?
+      #error_explanation.bg-red-50.text-red-500.px-3.py-2.font-medium.rounded-lg.mt-3
+        h2
+          = "#{pluralize(@todo.errors.count, 'error')} prohibited this todo from being saved:"
 
-      ul
-        - @todo.errors.each do |error|
-          li = error.full_message
+        ul
+          - @todo.errors.each do |error|
+            li = error.full_message
 
-  .my-5
-    = form.label :title
-    = form.text_field :title, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full'
+    .p-2
+      = form.text_field :title, class: 'block shadow rounded-md border border-gray-400 font-medium text-lg outline-none px-3 py-2 mt-2 w-full'
 
-  .my-5
-    = form.label :description
-    = form.text_field :description, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full'
+    .p-2.border-t.border-gray-800.pt-2
+      = form.text_area :description, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full'
 
-  .inline
-    = form.submit 'Save', class: 'rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer'
+    .pt-4.flex.justify-between
+      = button_tag type: 'submit', alt: 'Save', class: 'rounded-lg py-3 px-5 bg-green-600 text-white inline-block font-medium cursor-pointer' do
+        svg.w-6.h-6 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+          path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd"
+
+      = link_to cancel_path, alt: 'Cancel', data: { turbo_stream: true }, class: 'ml-2 rounded-lg py-3 px-5 bg-orange-400/50 text-white inline-block font-medium' do
+        svg.w-6.h-6 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+          path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd"
