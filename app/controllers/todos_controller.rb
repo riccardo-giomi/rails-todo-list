@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 class TodosController < ApplicationController
-  before_action :set_todo, only: %i[show edit update destroy cancel_edit]
+  before_action :set_todo, only: %i[show edit update destroy cancel_edit move]
 
   def index
-    # Until we implement positions, ordering by id keeps edited elements where
-    # they should be if we reload the page.
-    @todos = Todo.all.order(:id)
+    @todos = Todo.all.order(position: :asc)
   end
 
   def show; end
@@ -67,6 +65,10 @@ class TodosController < ApplicationController
       format.turbo_stream
       format.html { redirect_to todos_path }
     end
+  end
+
+  def move
+    @todo.insert_at(params[:position].to_i)
   end
 
   private

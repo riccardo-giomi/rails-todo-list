@@ -1,6 +1,6 @@
-= turbo_frame_tag todo, class: 'w-full' do
+= turbo_frame_tag todo, class: 'w-full', data: { id: todo.id } do
   .bg-amber-300.text-gray-800.rounded-xl.border.border-gray-500.shadow-lg.shadow-gray-600/75
-    div.border-b.border-gray-800.hover:cursor-ns-resize
+    div.border-b.border-gray-800.hover:cursor-ns-resize class="sort-handle"
       svg.h-6.w-24.mx-auto xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
         path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5"
 

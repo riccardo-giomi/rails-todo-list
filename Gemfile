@@ -47,6 +47,11 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
+# Add ordering and sorting by position feature for models
+gem 'acts_as_list'
+# Replacement for Rails.ajax in Rails 7
+gem 'requestjs-rails'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

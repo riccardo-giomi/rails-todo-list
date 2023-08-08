@@ -6,5 +6,5 @@ div
   .flex.flex-col.px-2.mt-2.items-center
     = render 'add_todo_button'
 
-  #todos.flex.flex-col.gap-2.p-2.items-center.justify-center
+  #todos.flex.flex-col.gap-2.p-2.items-center.justify-center data-controller="todo-drag" data-todo-drag-url="#{todos_move_path(':id')}"
     == render @todos
