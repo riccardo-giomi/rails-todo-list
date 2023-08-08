@@ -18,7 +18,7 @@ RSpec.describe 'todos/index' do
 
   it 'renders a list of todos' do
     render
-    assert_select 'div>*>p', text: Regexp.new('Title'.to_s), count: 2
+    assert_select 'div>*>h1', text: Regexp.new('Title'.to_s), count: 2
     assert_select 'div>*>p', text: Regexp.new('Description'.to_s), count: 2
   end
 end
