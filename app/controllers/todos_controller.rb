@@ -15,7 +15,7 @@ class TodosController < ApplicationController
 
   def edit; end
 
-  def create # rubocop:disable Metrics/MethodLength
+  def create # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
     @todo = Todo.new(todo_params)
 
     respond_to do |format|
@@ -24,19 +24,21 @@ class TodosController < ApplicationController
         format.html { redirect_to todos_path, notice: 'Todo was successfully created.' }
         format.json { render :show, status: :created, location: @todo }
       else
+        format.turbo_stream { render 'errors' }
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @todo.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  def update
+  def update # rubocop:disable Metrics/MethodLength
     respond_to do |format|
       if @todo.update(todo_params)
         format.turbo_stream
         format.html { redirect_to todos_path, notice: 'Todo was successfully updated.' }
         format.json { render :show, status: :ok, location: @todo }
       else
+        format.turbo_stream { render 'errors' }
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @todo.errors, status: :unprocessable_entity }
       end
