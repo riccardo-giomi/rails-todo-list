@@ -12,9 +12,9 @@ html
     = javascript_importmap_tags
 
   body
-    .container.mx-auto.bg-gray-300.h-screen.flex.flex-col
+    .container.h-screen.mx-auto.flex.flex-col
       = render 'components/header'
-      main.w-full.grow
+      main.w-full.grow.bg-gray-300
         = yield
       = render 'components/footer'
 
