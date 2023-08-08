@@ -20,6 +20,7 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.save
+        @todo.move_to_top
         format.turbo_stream
         format.html { redirect_to todos_path, notice: 'Todo was successfully created.' }
         format.json { render :show, status: :created, location: @todo }
