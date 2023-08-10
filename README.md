@@ -2,6 +2,18 @@
 
 A Ruby on Rails 7.0.6 application to manage, surprise surprise, a list of todos.
 
+Todos have a title, a description and a position and they can be moved by
+dragging and dropping them.
+
+The application is an excercise of mine to learn how to use:
+
+- Rails 7
+- My own quickstart Rails template
+- Hotwire (Turbo Frames and Turbo Streams)
+- StimulusJS
+- TailwindCSS
+- SortableJS
+
 ## Versions and requirements
 
 The current Ruby on Rails version is 7.0.6
