@@ -2,10 +2,10 @@
 
 A Ruby on Rails 7.0.6 application to manage, surprise surprise, a list of todos.
 
-Todos have a title, a description and a position and they can be moved by
-dragging and dropping them.
+Todos have a title, a description and a position and can be moved by dragging
+and dropping them.
 
-The application is an excercise of mine to learn how to use:
+The application is an exercise to learn how to use:
 
 - Rails 7
 - My own quickstart Rails template
