@@ -4,14 +4,14 @@
       svg.h-6.w-24.mx-auto xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
         path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5"
 
-    .p-1.my-2
+    .p-1.my-1
       .p-2
         h1.font-medium.text-lg
           =< todo.title
 
       - if todo.description.present?
-        p.p-2
-          =< todo.description
+        .p-2
+          =< simple_format(todo.description, { class: 'mb-2'})
 
 
     .p-1.flex.justify-between
