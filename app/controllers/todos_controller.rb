@@ -72,6 +72,7 @@ class TodosController < ApplicationController
 
   def move
     @todo.insert_at(params[:position].to_i)
+    head :no_content
   end
 
   private
