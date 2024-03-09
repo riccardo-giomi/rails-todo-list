@@ -1,0 +1,23 @@
+- # locals(form:, field:, file:, is_required: false)
+
+p class="label italic text-sm" Upload a replacement image
+= form.file_field field.to_sym
+- if error = form.object.errors[field.to_sym]&.first
+  p class="field-error-explanation" = error.capitalize
+- if file
+  - if is_required
+    = form.hidden_field field.to_sym, value: file.signed_id
+    p class="label italic text-sm mt-2" Current image
+    p class="text-sm" (click to open in another tab or window)
+    div class="w-fit"
+      = render 'application/file', file:
+  - else
+    p class="label italic text-sm mt-2" Or remove selection to delete the image
+    p class="text-sm" (click to open it in another tab or window)
+
+  - if !is_required && file.persisted?
+    div class="flex border-1 items-center"
+      div class="pr-3"
+        = check_box_tag "#{form.object_name}[#{field}]", file.signed_id, checked: true, id: nil
+      div
+        = render 'application/file', file:

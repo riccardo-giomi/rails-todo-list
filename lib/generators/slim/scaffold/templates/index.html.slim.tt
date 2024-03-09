@@ -1,0 +1,12 @@
+- content_title = '<%= human_name.pluralize %>'
+- content_for :page_title, content_title
+
+div class="w-full"
+  div class="header lg:flex items-center gap-1"
+    div class="lg:flex-grow"
+      h1 class="text-left" = content_title
+    div class="lg:flex-shrink"
+      = link_to 'New <%= human_name.downcase %>', <%= new_helper(type: :path) %>, class: 'btn-action', title: 'New <%= human_name.downcase %>'
+
+  div id="<%= plural_table_name %>"
+    = render @<%= plural_table_name %>, controls: [:show, :edit]

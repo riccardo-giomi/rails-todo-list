@@ -1,0 +1,133 @@
+# frozen_string_literal: true
+
+<%
+has_attachments = false
+
+module_namespacing do
+-%>
+# Model class from generator.
+class <%= class_name %> < <%= parent_class_name.classify %>
+<%
+  if title_index = attributes.index { _1.extended_type == :title }
+-%>
+  validates :<%= attributes[title_index].name %>, presence: true
+
+<%
+  end
+
+  attributes.select(&:reference?).each do |attribute|
+-%>
+  belongs_to :<%= attribute.name %><%= ', polymorphic: true' if attribute.polymorphic? %>
+
+<%
+  end
+  attributes.select(&:rich_text?).each do |attribute|
+-%>
+  has_rich_text :<%= attribute.name %>
+
+<%
+  end
+
+  attributes.select(&:attachment?).each do |attribute|
+    has_attachments     = true
+    if attribute.extended_type == :image
+-%>
+  # Starting variants, this should be a sensible default since we know that it
+  # is an image:
+  has_one_attached :<%= attribute.name %> do |<%= attribute.name %>|
+    <%= attribute.name %>.variant :gallery, resize_to_limit: [300, 300]
+    <%= attribute.name %>.variant :thumb, resize_to_limit: [100, 100]
+  end
+
+  # Starting validation for images, it should be a sensible default.
+  validates :<%= attribute.name %>, content_type: %i[jpg jpeg png]
+  # Example with additional validations (presence and size)
+  # validates :<%= attribute.name %>, attached: true, content_type: %i[jpg jpeg png], size: { less_than_or_equal_to: 1.megabyte }
+
+<%
+    else
+-%>
+  has_one_attached :<%= attribute.name %>
+  # Example of validations for a file (presence, content type and size)
+  # validates :<%= attribute.name %>, content_type: %i[pdf], size: { less_than_or_equal_to: 1.megabyte }
+
+<%
+    end
+  end
+
+  attributes.select(&:attachments?).each do |attribute|
+    has_attachments = true
+    if attribute.extended_type == :images
+-%>
+  # Starting variants, this should be a sensible default since we know that they
+  # are images:
+  has_many_attached :<%= attribute.name %> do |<%= attribute.name %>|
+    <%= attribute.name %>.variant :gallery, resize_to_limit: [300, 300]
+    <%= attribute.name %>.variant :thumb, resize_to_limit: [100, 100]
+  end
+
+  # Starting validation for a group of images, it should be a sensible default.
+  validates :<%= attribute.name %>, content_type: %i[jpg jpeg png]
+  # Example of additional validations (presence and size)
+  # validates :<%= attribute.name %>, attached: true, content_type: %i[jpg jpeg png], size: { less_than_or_equal_to: 1.megabyte }
+
+<%
+    else
+-%>
+  has_many_attached :<%= attribute.name %>
+  # Example of validations for files (presence, content type and size)
+  # validates :<%= attribute.name %>, content_type: %i[pdf], size: { less_than_or_equal_to: 1.megabyte }
+
+<%
+    end
+  end
+
+  attributes.select(&:token?).each do |attribute|
+-%>
+  has_secure_token<%   if attribute.name != 'token' %> :<%= attribute.name %><%   end %>
+<%
+  end
+
+  if attributes.any?(&:password_digest?)
+-%>
+  has_secure_password
+<%
+  end
+
+  if has_attachments
+    attributes.select(&:attachment?).each do |attribute|
+-%>
+  # Returns nil if <%= attribute.name %> is not attached or if it's file is not
+  # persisted yet, or the attachment eitherwise.
+  #
+  # Useful when changing a record to identify pre-existing files that have a
+  # signed_id from those that don't (and might need to be handled differently
+  # if the change does not go through).
+  def persisted_<%= attribute.name %>
+    <%= attribute.name %> if <%= attribute.name %>.attached? && <%= attribute.name %>.valid? && <%= attribute.name %>.blob.persisted?
+  end
+<%
+    end
+
+    attributes.select(&:attachments?).each do |attribute|
+-%>
+  # Returns only the file blobs of multi-attachment that are persisted, and
+  # valid.
+  #
+  # Useful when changing a record to identify pre-existing files that have a
+  # signed_id from those that don't (and might need to be handled differently
+  # if the change does not go through).
+  def persisted_<%= attribute.name %>
+    return [] unless <%= attribute.name %>.attached?
+
+    <%= attribute.name %>.select { |blob| blob.valid? && blob.persisted? }
+  end
+
+<%
+    end
+  end
+-%>
+end
+<%
+end
+-%>

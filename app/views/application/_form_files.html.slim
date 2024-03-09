@@ -1,0 +1,17 @@
+- # locals(form:, field:, files:, is_required: false)
+
+p class="label italic text-sm" Add images
+- if is_required
+  p class="label italic text-sm mt-2" At least one image is required
+= form.file_field field.to_sym, multiple: true
+- if error = form.object.errors[:images]&.first
+  p class="field-error-explanation" = error.capitalize
+- if files.present?
+  p class="label italic text-sm mt-2" And/or remove selection to images you want to remove
+  p class="text-sm" (click on any file to open it in another tab or window)
+  - files.each do |file|
+    div class="flex border-1 items-center"
+      div class="pr-3"
+        = check_box_tag "#{form.object_name}[#{field}][]", file.signed_id, checked: true, id: nil
+      div
+        = render 'application/file', file:

@@ -1,0 +1,5 @@
+- # locals(file:)
+- filename = file.filename.sanitized
+
+= link_to file, target: '_blank', alt: filename, class: 'block no-underline w-fit p-2 hover:bg-gray-300 focus:bg-gray-300 dark:hover:bg-slate-700 dark:focus:bg-slate-700' do
+  = render 'application/file_pill', file:

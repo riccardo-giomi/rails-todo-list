@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title = content_for :page_title
+    meta name="viewport" content="width=device-width,initial-scale=1"
+
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_link_tag 'tailwind', 'inter-font', 'data-turbo-track': 'reload'
+    = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
+
+    = javascript_importmap_tags
+
+  body class="container h-[calc(100%-0.5rem)] mx-auto lg:max-w-screen-xl xl:max-w-screen-2xl"
+    main class="min-h-full w-full my-[0.25rem] mx-1 p-3 border-2 border-black dark:border-slate-600"
+      = render 'notifications'
+      = yield

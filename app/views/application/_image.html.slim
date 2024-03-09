@@ -1,0 +1,12 @@
+- # locals(image:)
+- dom_id = dom_id image
+
+div data-controller="dialog"
+  div class="cursor-pointer" data-action="click->dialog#open"
+    div class="border border-black p-[1px] hover:p-0 hover:border-2 dark:border-slate-300"
+      = default_image_tag image, variant: :gallery
+
+  dialog id="image-#{dom_id}" class="p-0 dark:bg-slate-800 dark:text-slate-300" data-dialog-target="dialog" data-action="click->dialog#close"
+    div data-action="click->dialog#doNothing:capture:stop"
+      div class="p-3 border-2 border-black dark:border-slate-600"
+        = default_image_tag image

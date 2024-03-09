@@ -1,0 +1,11 @@
+- content_title = '<%= human_name %>'
+- content_for :page_title, "Records | #{content_title}"
+
+div class="w-full"
+  div class="header lg:flex items-center gap-1"
+    div class="lg:flex-grow"
+      h1 class="text-left" = content_title
+    div class="lg:flex-shrink"
+      = link_to 'Back to <%= human_name.pluralize.downcase %>', <%= index_helper(type: :path) %>, class: 'button'
+
+  = render <%= model_resource_name(prefix: '@') %>, controls: [:edit, :destroy]

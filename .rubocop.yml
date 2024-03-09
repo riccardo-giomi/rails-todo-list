@@ -1,0 +1,60 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-factory_bot
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - lib/templates/rspec/model/model_spec.rb
+    - lib/templates/rspec/scaffold/*
+
+Layout/LineLength:
+  Exclude:
+    - db/seeds.rb
+Layout/HashAlignment:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+Metrics/BlockLength:
+  Exclude:
+    - config/environments/*
+RSpec/ExampleLength:
+  Exclude:
+    - spec/helpers/**/*
+    - spec/requests/**/*
+    - spec/views/**/*
+RSpec/MultipleMemoizedHelpers:
+  Exclude:
+    - spec/requests/**/*
+RSpec/MultipleExpectations:
+  Exclude:
+    - spec/helpers/**/*
+    - spec/requests/**/*
+    - spec/views/**/*
+RSpec/NestedGroups:
+  Max: 4
+Style/Documentation:
+  Exclude:
+    - app/controllers/**/*
+    - config/**/*
+    - spec/**/*
+    - db/**/*
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - solargraph_helper.rb
+    - db/migrate/*
+Style/GlobalStdStream:
+  Exclude:
+    - config/**/*
+Style/RedundantConstantBase:
+  Exclude:
+    - config/**/*
+Style/RedundantFetchBlock:
+  Exclude:
+    - config/**/*
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: single_quotes
