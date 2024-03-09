@@ -1,0 +1,12 @@
+- content_title = 'New todo'
+- content_for :page_title, "Todos | #{content_title}"
+
+div class="w-full"
+  div class="header lg:flex items-center gap-1"
+    div class="lg:flex-grow"
+      h1 class="text-left" = content_title
+    div class="lg:flex-shrink"
+      = link_to 'Back to todos', todos_path, class: 'button'
+
+  - # The _form partial allows for a :controls option, but it makes no sense with the "new" view.
+  = render 'form', todo: @todo

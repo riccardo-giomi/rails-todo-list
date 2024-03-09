@@ -1,0 +1,12 @@
+- content_title = 'Todos'
+- content_for :page_title, content_title
+
+div class="w-full"
+  div class="header lg:flex items-center gap-1"
+    div class="lg:flex-grow"
+      h1 class="text-left" = content_title
+    div class="lg:flex-shrink"
+      = link_to 'New todo', new_todo_path, class: 'btn-action', title: 'New todo'
+
+  div id="todos"
+    = render @todos, controls: [:show, :edit]
