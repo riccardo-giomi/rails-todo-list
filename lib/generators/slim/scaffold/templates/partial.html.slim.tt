@@ -82,8 +82,6 @@ div id="#{dom_id <%= singular_name %>}" class="border-2 border-black dark:border
       div class="pt-3 lg:pt-0 lg:col-span-1"
         - unless controls.empty?
           div class="lg:sticky lg:top-1"
-            - if controls.include?(:show)
-              = link_to 'Show <%= human_name.downcase %>', <%= model_resource_name %>, class: 'mb-2 button', title: 'Show <%= human_name.downcase %>'
             - if controls.include?(:edit)
               = link_to 'Edit <%= human_name.downcase %>', <%= edit_helper(singular_name , type: :path) %>, class: 'mb-2 button', title: 'Edit <%= human_name.downcase %>'
             - if controls.include?(:destroy)

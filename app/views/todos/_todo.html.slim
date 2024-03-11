@@ -2,7 +2,7 @@
 
 - content = capture do
   div class="text-2xl font-bold"
-    = link_to model_title(todo, 'name'), todo
+    = model_title(todo, 'name')
 
   div class="my-3"
     span class="label" Description
@@ -22,8 +22,6 @@ div id="#{dom_id todo}" class="border-2 border-black dark:border-slate-600 p-2 m
       div class="pt-3 lg:pt-0 lg:col-span-1"
         - unless controls.empty?
           div class="lg:sticky lg:top-1"
-            - if controls.include?(:show)
-              = link_to 'Show todo', todo, class: 'mb-2 button', title: 'Show todo'
             - if controls.include?(:edit)
               = link_to 'Edit todo', edit_todo_path(todo), class: 'mb-2 button', title: 'Edit todo'
             - if controls.include?(:destroy)

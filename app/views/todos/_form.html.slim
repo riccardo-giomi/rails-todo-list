@@ -44,8 +44,6 @@ div class="border-2 border-black dark:border-slate-600 p-2 mt-2"
       div class="pt-3 lg:pt-0 lg:col-span-1"
         - unless controls.empty?
           div class="lg:sticky lg:top-1"
-            - if controls.include?(:show)
-              = link_to 'Show todo', todo, class: 'mb-2 button', title: 'Show todo'
             - if controls.include?(:edit)
               = link_to 'Edit todo', edit_todo_path(todo), class: 'mb-2 button', title: 'Edit todo'
             - if controls.include?(:destroy)

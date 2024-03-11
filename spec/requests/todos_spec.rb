@@ -11,13 +11,6 @@ RSpec.describe '/todos' do
       end
     end
 
-    describe 'GET /show' do
-      it 'renders a successful response' do
-        get todo_url(todo)
-        expect(response).to be_successful
-      end
-    end
-
     describe 'GET /edit' do
       it 'renders a successful response' do
         get edit_todo_url(todo)
@@ -85,9 +78,9 @@ RSpec.describe '/todos' do
         end.to change(Todo, :count).by(1)
       end
 
-      it 'redirects to the created todo' do
+      it 'redirects to the todos list' do
         post todos_url, params: { todo: valid_attributes }
-        expect(response).to redirect_to(todo_url(Todo.last))
+        expect(response).to redirect_to(todos_url)
       end
     end
   end
