@@ -1,6 +1,11 @@
 - # locals: (todo:, controls: [])
 
 div id="#{dom_id todo}" class="rounded-2xl border-2 border-black dark:border-slate-600 p-3 mt-2"
+  div class="handle mb-4 pb-3 border-b border-black dark:border-slate-600"
+    svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 mx-auto"
+      path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+
+
   div class="min-h-32 lg:flex lg:flex-row lg:gap-2"
     div class="grow"
       div class="text-3xl font-bold"
@@ -10,7 +15,7 @@ div id="#{dom_id todo}" class="rounded-2xl border-2 border-black dark:border-sla
       div class="my-3"
         = "Position: #{model_value(todo, 'position')}"
 
-    div class="m-0 mt-3 p-0 pt-3 lg:mt-0 lg:pt-0 flex flex-row lg:flex-col border-t border-black dark:border-slate-600 lg:border-0"
+    div class="m-0 mt-4 p-0 pt-3 lg:mt-0 lg:pt-0 flex flex-row lg:flex-col border-t border-black dark:border-slate-600 lg:border-0"
       div class="grow"
         = link_to edit_todo_path(todo), title: 'Edit', class: 'text-slate-500 hover:text-slate-300'
           svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"
