@@ -9,4 +9,4 @@ div class="w-full"
       = link_to 'New todo', new_todo_path, class: 'btn-action', title: 'New todo'
 
   div id="todos"
-    = render @todos, controls: [:edit]
+    = render @todos, controls: [:edit, :destroy]

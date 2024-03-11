@@ -39,8 +39,4 @@ module ApplicationHelper
     filename = file.filename.sanitized
     image_tag file, alt: filename, title: filename
   end
-
-  def delete_button_with_dialog(message, button_text, resource, class:)
-    render partial: 'application/delete_button_with_dialog', locals: { message:, button_text:, resource:, class: }
-  end
 end
