@@ -1,24 +1,8 @@
-# README
+# Rails TODO list
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Ruby on Rails 7.1 application that allows to create TODO notes and show them
+in a list.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This is a simple exercise in Hotwire and StimilusJS, starting from a "normal"
+Rails application created with my
+[quickstart template](https://github.com/riccardo-giomi/rails-7.1-quickstart).
