@@ -23,13 +23,6 @@
       - if error = todo.errors[:description]&.first
         p class="field-error-explanation" = error.capitalize
 
-
-    div class="my-3"
-      = form.label :position
-      = form.number_field :position
-      - if error = todo.errors[:position]&.first
-        p class="field-error-explanation" = error.capitalize
-
     div class="pt-3"
       = form.submit class: 'btn-submit'
 

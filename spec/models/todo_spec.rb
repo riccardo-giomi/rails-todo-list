@@ -13,7 +13,20 @@ RSpec.describe Todo do
       end
     end
 
+    describe 'position' do
+      let!(:todo) { create(:todo) }
+
+      it 'defines the order position of the Todo' do
+        expect(todo.position).to eq(1)
+      end
+
+      it 'defaults to the last position' do
+        create(:another_todo)
+        expect(described_class.pluck(:id, :position))
+          .to contain_exactly([1, 1], [2, 2])
+      end
+    end
+
     specify('description') { expect(todo.description).to eq('Description Value') }
-    specify('position') { expect(todo.position).to eq(42) }
   end
 end
