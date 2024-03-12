@@ -11,6 +11,8 @@ AllCops:
   Exclude:
     - lib/templates/rspec/model/model_spec.rb
     - lib/templates/rspec/scaffold/*
+    - db/schema.rb
+    - bin/bundle
 
 Layout/LineLength:
   Exclude:
