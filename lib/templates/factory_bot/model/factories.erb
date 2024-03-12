@@ -36,7 +36,7 @@ end
 attributes.each do |attribute|
   next if attribute.attachment? || attribute.attachments?
 
-  value = attribute.factory_value(alternative: true).inspect
+  value = attribute.alternative_factory_value.inspect
   if attribute.type == :datetime
     value += '.to_datetime.in_time_zone'
   elsif attribute.type == :date

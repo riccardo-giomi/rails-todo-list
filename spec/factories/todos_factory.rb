@@ -9,9 +9,9 @@ FactoryBot.define do
     # Handy for specs with more than one record, specifically those specifying
     # update operations
     factory :another_todo do
-      name { 'Name Value' }
-      description { 'Description Value' }
-      position { 42 }
+      name { 'Another Name Value' }
+      description { 'Another Description Value' }
+      position { 24 }
     end
 
     # Used to generate "models with valid attributes" in specs, e.g. for

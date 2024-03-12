@@ -45,24 +45,24 @@ module Rails
         end
       end
 
-      def factory_value(alternative: false) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/AbcSize, Metrics/PerceivedComplexity
+      def factory_value # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
         @factory_value ||= case type
                            when :string, :text
-                             "#{alternative ? 'Another ' : ''}#{name.humanize} Value"
+                             "#{name.humanize} Value"
                            when :integer
-                             alternative ? 24 : 42
+                             42
                            when :float
-                             alternative ? 73.31 : 13.37
+                             13.37
                            when :decimal
-                             alternative ? '73.31' : '13.37'
+                             '13.37'
                            when :datetime, :timestamp
-                             alternative ? '2023-11-17 04:21:11' : '2024-01-21 13:37:33'
+                             '2024-01-21 13:37:33'
                            when :date
-                             alternative ? '2024-01-25' : '2024-02-01'
+                             '2024-02-01'
                            when :time
-                             alternative ? '12:40:51' : '06:33:00'
+                             '06:33:00'
                            when :boolean
-                             !alternative
+                             true
                            when :references, :belongs_to,
                                 :attachment, :attachments,
                                 :rich_text
@@ -70,6 +70,29 @@ module Rails
                            else
                              ''
                            end
+      end
+
+      def alternative_factory_value # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
+        @alternative_factory_value ||= case type
+                                       when :string, :text
+                                         "Another #{name.humanize} Value"
+                                       when :integer
+                                         24
+                                       when :float
+                                         73.31
+                                       when :decimal
+                                         '73.31'
+                                       when :datetime, :timestamp
+                                         '2023-11-17 04:21:11'
+                                       when :date
+                                         '2024-01-25'
+                                       when :time
+                                         '12:40:51'
+                                       when :boolean
+                                         false
+                                       else
+                                         factory_value
+                                       end
       end
     end
   end
