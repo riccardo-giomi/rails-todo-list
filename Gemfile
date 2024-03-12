@@ -77,3 +77,5 @@ end
 gem 'active_storage_validations'
 gem 'image_processing'
 gem 'ruby-vips'
+
+gem 'positioning'
