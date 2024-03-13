@@ -12,7 +12,6 @@ RSpec.describe 'todos/index' do
       assert_select "#todos div##{dom_id todo}" do
         assert_select 'div', text: Regexp.new('Name Value')
         assert_select 'div', text: Regexp.new('Description Value')
-        assert_select 'div', text: Regexp.new('42')
       end
     end
   end

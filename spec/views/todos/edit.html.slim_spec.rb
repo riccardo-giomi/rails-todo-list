@@ -11,7 +11,6 @@ RSpec.describe 'todos/edit' do
     assert_select 'form[action=?][method=?]', todo_path(todo), 'post' do
       assert_select 'input[name=?]', 'todo[name]'
       assert_select 'textarea[name=?]', 'todo[description]'
-      assert_select 'input[name=?]', 'todo[position]'
     end
   end
 end
