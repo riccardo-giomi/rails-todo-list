@@ -3,10 +3,10 @@
 
 div class="w-full"
   div class="header lg:flex items-center gap-1"
-    div class="lg:flex-grow"
-      h1 class="text-left" = content_title
+    div class="lg:flex-grow center"
+      h1 class="text-center lg:page-title" = content_title
     div class="lg:flex-shrink"
-      = link_to 'New todo', new_todo_path, class: 'btn-action', title: 'New todo'
+      = link_to 'New todo', new_todo_path, class: 'button w-full', title: 'New todo'
 
   div id="todos"
     = render @todos, controls: [:edit, :destroy]

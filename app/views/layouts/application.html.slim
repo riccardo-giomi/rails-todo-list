@@ -12,7 +12,7 @@ html
 
     = javascript_importmap_tags
 
-  body class="container h-[calc(100%-0.5rem)] mx-auto lg:max-w-screen-xl xl:max-w-screen-2xl"
-    main class="min-h-full w-full my-[0.25rem] mx-1 p-3 border-2 border-black dark:border-slate-600"
-      #notice
+  body class="container h-[calc(100%-0.5rem)] mx-auto p-1"
+    main class="min-h-full w-full my-[0.25rem]"
+      = render 'notifications'
       = yield

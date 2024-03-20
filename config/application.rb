@@ -19,9 +19,6 @@ require 'action_cable/engine'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-# Custom, local railtie to add extra functionalities to the slim-rails
-# generators.
-require File.expand_path('../lib/generators/slim/railtie', __dir__)
 
 module RailsTodoList
   class Application < Rails::Application

@@ -1,43 +1,29 @@
 - # locals: (todo:, controls: [])
 
-- content = capture do
+div class="content-box relative rounded-2xl "
   = form_with(model: todo, class: 'contents') do |form|
-    - if todo.errors.any?
-      div id="errors-explanation"
-        - errors_count = pluralize(todo.errors.count, 'error')
-        h2 = "#{errors_count} prohibited this todo from being saved:"
-        ul class="list-disc"
-          - todo.errors.each do |error|
-            li = error.full_message
+    div class="min-h-32 lg:flex lg:flex-row lg:gap-4 mt-4 mb-3"
+      div class="lg:grow"
+        - if todo.errors.any?
+          div id="errors-explanation"
+            - errors_count = pluralize(todo.errors.count, 'error')
+            h2 = "#{errors_count} prohibited this todo from being saved:"
+            ul class="list-disc"
+              - todo.errors.each do |error|
+                li = error.full_message
 
-    div class="my-3"
-      = form.label :name
-      = form.text_field :name
-      - if error = todo.errors[:name]&.first
-        p class="field-error-explanation" = error.capitalize
+        div class="my-3"
+          = form.text_field :name, class: 'w-full'
+          - if error = todo.errors[:name]&.first
+            p class="field-error-explanation" = error.capitalize
 
+        div class="my-3"
+          = form.text_area :description, class: 'w-full', rows: 3
+          - if error = todo.errors[:description]&.first
+            p class="field-error-explanation" = error.capitalize
 
-    div class="my-3"
-      = form.label :description
-      = form.text_area :description
-      - if error = todo.errors[:description]&.first
-        p class="field-error-explanation" = error.capitalize
-
-    div class="pt-3"
-      = form.submit class: 'btn-submit'
-
-div class="border-2 border-black dark:border-slate-600 p-2 mt-2"
-  - if controls.empty?
-    = content
-  - else
-    div class="lg:grid lg:grid-cols-5 lg:gap-2"
-      div class="lg:col-span-4"
-        = content
-
-      div class="pt-3 lg:pt-0 lg:col-span-1"
-        - unless controls.empty?
-          div class="lg:sticky lg:top-1"
-            - if controls.include?(:edit)
-              = link_to 'Edit todo', edit_todo_path(todo), class: 'mb-2 button', title: 'Edit todo'
-            - if controls.include?(:destroy)
-              = delete_button_with_dialog 'Are you sure you want to delete this todo?', 'Delete todo', todo, class: 'mb-2 btn-important'
+      div class="m-0 mt-4 p-0 pt-3 lg:mt-0 lg:pt-0 flex flex-row lg:flex-col"
+        div class="grow"
+          = render 'form_save', form:
+        div
+          = render 'form_cancel', form:
