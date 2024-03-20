@@ -1,5 +1,0 @@
-div
-  h1.font-bold.text-4xl
-    | <%= class_name %>#<%= @action %>
-  p
-    | Find me in <%= @path %>
