@@ -1,3 +1,10 @@
-- if notice.present?
-  div#notice
-    = notice
+- # locals: (message:)
+
+div id="notification" data-controller="notifications" data-notifications-target="notifications"
+  div class="flex flex-row"
+    div class="grow"
+      = message
+    div
+      a class="cursor-pointer" data-action="click->notifications#close"
+        svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 hover:scale-125"
+          path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"

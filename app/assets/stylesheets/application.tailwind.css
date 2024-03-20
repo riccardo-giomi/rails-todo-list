@@ -108,7 +108,7 @@
     @apply dark:bg-neutral-950 dark:border-neutral-700 dark:shadow-neutral-700;
   }
 
-  #notice {
+  #notification {
     @apply block w-full p-3 mb-2 bg-green-300 border-2 border-green-400 text-green-900 font-medium;
     @apply dark:bg-lime-900 dark:border dark:border-lime-200 dark:text-lime-200;
   }
