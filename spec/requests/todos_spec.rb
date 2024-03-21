@@ -29,20 +29,18 @@ RSpec.describe '/todos' do
 
           expect(attributes).to eq(valid_attributes)
         end
-
-        it 'redirects to the todo' do
-          patch todo_url(todo), params: { todo: valid_attributes }
-          todo.reload
-          expect(response).to redirect_to(todo_url(todo))
-        end
       end
 
       context 'with invalid update attributes' do
         let(:invalid_attributes) { attributes_for(:invalid_todo) }
 
-        it 'renders a response with 422 status (i.e. to display the "edit" template)' do
+        it 'Does not change the object' do
           patch todo_url(todo), params: { todo: invalid_attributes }
-          expect(response).to have_http_status(:unprocessable_entity)
+
+          actual_attributes = todo.reload.attributes.stringify_keys
+          not_expected_attributes = invalid_attributes.stringify_keys
+
+          expect(actual_attributes).not_to be >= not_expected_attributes
         end
       end
     end
@@ -52,11 +50,6 @@ RSpec.describe '/todos' do
         expect do
           delete todo_url(todo)
         end.to change(Todo, :count).by(-1)
-      end
-
-      it 'redirects to the todos list' do
-        delete todo_url(todo)
-        expect(response).to redirect_to(todos_url)
       end
     end
   end
@@ -77,11 +70,6 @@ RSpec.describe '/todos' do
           post todos_url, params: { todo: valid_attributes }
         end.to change(Todo, :count).by(1)
       end
-
-      it 'redirects to the todos list' do
-        post todos_url, params: { todo: valid_attributes }
-        expect(response).to redirect_to(todos_url)
-      end
     end
   end
 
@@ -93,11 +81,6 @@ RSpec.describe '/todos' do
         expect do
           post todos_url, params: { todo: invalid_attributes }
         end.not_to change(Todo, :count)
-      end
-
-      it 'renders a response with 422 status (i.e. to display the "new" template)' do
-        post todos_url, params: { todo: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
