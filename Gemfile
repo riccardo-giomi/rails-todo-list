@@ -79,3 +79,4 @@ gem 'image_processing'
 gem 'ruby-vips'
 
 gem 'positioning'
+gem 'requestjs-rails'
