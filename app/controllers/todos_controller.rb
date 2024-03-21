@@ -29,15 +29,14 @@ class TodosController < ApplicationController
     end
   end
 
-  def update # rubocop:disable Metrics/MethodLength
+  def update
     respond_to do |format|
       attributes = todo_params
       if @todo.update(attributes)
         format.turbo_stream
-        format.html { redirect_to todo_url(@todo), notice: 'Todo was successfully updated.' }
         format.json { render :show, status: :ok, location: @todo }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.turbo_stream { render 'errors' }
         format.json { render json: @todo.errors, status: :unprocessable_entity }
       end
     end
@@ -54,12 +53,10 @@ class TodosController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_todo
     @todo = Todo.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def todo_params
     params.require(:todo).permit(:name, :description, :position)
   end

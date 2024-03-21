@@ -113,6 +113,14 @@
     @apply dark:bg-lime-900 dark:border dark:border-lime-200 dark:text-lime-200;
   }
 
+  .errors-explanation {
+    @apply border-2 block w-full p-3 mb-2 bg-red-100 border-red-300 text-red-600 font-medium;
+    @apply dark:bg-red-800 dark:border-red-300 dark:text-red-200;
+  }
+  .errors-explanation li {
+    @apply ml-4;
+  }
+
   .label {
     @apply block font-bold mb-1;
   }
@@ -153,23 +161,5 @@
 
   .btn-submit {
     @apply button lg:w-auto;
-  }
-
-  form.contents .field_with_errors > input,
-  form.contents .field_with_errors > textarea {
-    @apply border-2 border-red-300;
-    @apply dark:border dark:border-red-950;
-  }
-
-  #errors-explanation {
-    @apply border-2 bg-red-100 border-red-300 text-red-600 p-3;
-    @apply dark:border dark:bg-red-800 dark:border-red-300 dark:text-red-200;
-  }
-  #errors-explanation li {
-    @apply ml-4;
-  }
-  .field-error-explanation {
-    @apply text-red-600 text-sm mt-1;
-    @apply dark:text-red-500;
   }
 }

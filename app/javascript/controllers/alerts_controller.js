@@ -1,13 +1,13 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ "notifications" ]
+  static targets = [ "alert" ]
 
   open(event) {
     event.preventDefault()
   }
 
   close() {
-    this.notificationsTarget.remove()
+    this.alertTarget.remove()
   }
 }

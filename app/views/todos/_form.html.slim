@@ -1,23 +1,15 @@
 - # locals: (todo:, controls: [])
 
-div class="content-box relative rounded-2xl "
+div class="content-box rounded-2xl "
+  div id="errors-#{dom_id todo}"
   = form_with(model: todo, class: 'contents') do |form|
     div class="min-h-32 lg:flex lg:flex-row lg:gap-4 mt-4 mb-3"
       div class="lg:grow"
-        - if todo.errors.any?
-          div id="errors-explanation"
-            - errors_count = pluralize(todo.errors.count, 'error')
-            h2 = "#{errors_count} prohibited this todo from being saved:"
-            ul class="list-disc"
-              - todo.errors.each do |error|
-                li = error.full_message
-
-        div class="my-3"
+        div class="mb-3"
           = form.text_field :name, class: 'w-full'
           - if error = todo.errors[:name]&.first
             p class="field-error-explanation" = error.capitalize
-
-        div class="my-3"
+        div class="mt-3"
           = form.text_area :description, class: 'w-full', rows: 3
           - if error = todo.errors[:description]&.first
             p class="field-error-explanation" = error.capitalize
