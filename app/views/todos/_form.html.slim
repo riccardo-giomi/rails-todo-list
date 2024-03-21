@@ -1,4 +1,4 @@
-- # locals: (todo:)
+- # locals: (todo:, cancel_button: nil)
 
 div class="content-box rounded-2xl"
   div id="errors-#{dom_id todo}"
@@ -18,4 +18,7 @@ div class="content-box rounded-2xl"
         div class="grow"
           = render 'form_save', form:
         div
-          = render 'form_cancel', form:
+          - if cancel_button
+            = cancel_button
+          - else
+            = render 'form_cancel', form:

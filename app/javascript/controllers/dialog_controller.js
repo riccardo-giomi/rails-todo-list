@@ -8,7 +8,14 @@ export default class extends Controller {
     this.dialogTarget.showModal()
   }
 
-  close() {
+  close(event) {
+    event.preventDefault()
+    this.dialogTarget.close()
+  }
+
+  closeAndResetForm(event) {
+    event.preventDefault()
+    this.dialogTarget.getElementsByTagName('form')[0]?.reset()
     this.dialogTarget.close()
   }
 }

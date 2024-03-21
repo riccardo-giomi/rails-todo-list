@@ -1,0 +1,3 @@
+= turbo_stream.append 'todos', @todo
+= turbo_stream.update 'alerts', partial: 'application/notification', locals: { message: 'New Todo added at the end of the list.' }
+= turbo_stream.replace 'new_todo_link', partial: 'todos/new_todo_link'

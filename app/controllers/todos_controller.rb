@@ -20,10 +20,10 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.save
-        format.html { redirect_to todos_url, notice: 'Todo was successfully created.' }
+        format.turbo_stream
         format.json { render :show, status: :created, location: @todo }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream { render 'errors' }
         format.json { render json: @todo.errors, status: :unprocessable_entity }
       end
     end
