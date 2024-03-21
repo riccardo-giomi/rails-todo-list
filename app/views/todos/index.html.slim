@@ -8,7 +8,7 @@ div class="w-full"
     div class="lg:flex-shrink"
       = render 'todos/new_todo_link'
 
-  div id="todos"
+  div id="todos" data-controller="drag" data-drag-url-value=move_todo_path(':id')
     - @todos.each do |todo|
       div class="list-wrapper"
         = render todo

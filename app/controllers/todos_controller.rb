@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TodosController < ApplicationController
-  before_action :set_todo, only: %i[show edit update destroy]
+  before_action :set_todo, only: %i[show edit update destroy move]
 
   def index
     @todos = Todo.order(:position)
@@ -49,6 +49,11 @@ class TodosController < ApplicationController
       format.turbo_stream
       format.json { head :no_content }
     end
+  end
+
+  def move
+    @todo.update(position: params[:position])
+    head :no_content
   end
 
   private
