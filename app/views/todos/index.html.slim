@@ -9,4 +9,6 @@ div class="w-full"
       = render 'todos/new_todo_link'
 
   div id="todos"
-    = render partial: @todos, spacer_template: 'todos/spacer'
+    - @todos.each do |todo|
+      div class="list-wrapper"
+        = render todo
