@@ -90,7 +90,7 @@
 
 @layer components {
   .header {
-    @apply content-box mt-0;
+    @apply content-box mt-0 mb-5 md:mb-8;
   }
 
   .page-title {
@@ -98,8 +98,12 @@
   }
 
   .content-box {
-    @apply bg-neutral-200 border border-stone-300 p-3 mt-5 md:mt-8 shadow-md shadow-stone-300;
+    @apply bg-neutral-200 border border-stone-300 p-3 shadow-md shadow-stone-300;
     @apply dark:bg-neutral-950 dark:border-neutral-700 dark:shadow-neutral-700;
+  }
+
+  .list-spacer {
+    @apply min-h-5 md:min-h-8;
   }
 
   .handle {
