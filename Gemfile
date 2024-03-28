@@ -73,6 +73,8 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'slim-rails'
+  gem 'solargraph'
+  gem 'solargraph-rails'
 end
 gem 'active_storage_validations'
 gem 'image_processing'
